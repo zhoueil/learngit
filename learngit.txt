@@ -100,6 +100,24 @@ Git 分布式版本控制系统
 		合并某分支到当前分支: git merge <name>
 		删除分支:  git branch -d <name>
 	     	查看分支合并图. git log --graph  
+	
+	18. 当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支
+		git clone git@github.com:michaelliao/learngit.git
+
+	      你的小伙伴要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是他用这个命令创建本地dev分支：
+		$ git checkout -b dev origin/dev
+
+	19 .多人协作的工作模式通常是这样:
+		1.首先,可以试图用 git  push origin <branch-name>推送自己的修改;
+		2.如果推送失败,则因为远程分支比你的本地更新, 需要先用git pull 试图合并;
+		3.如果合并没有冲突,则解决冲突,并在本地提交;
+		4.没有冲突或者解决掉冲突后,再用git push origin <branch-name> 推送就能成功!
+	 如果git pull 提示 no tracking information , 则说明本地分支和远程分支的链接关系没有创建,用命令:
+	git branch --set-upstream-to <branch-name> origin/<branch-name>
+	eg: git branch --set-upstream-to=origin/dev dev
+
+	20.查看远程库信息,使用 git remote -v
+	
 		
 	
 
@@ -158,6 +176,14 @@ Git 分布式版本控制系统
    合并分支时,加上 --no -ff 参数就可以用普通模式合并,合并后的历史有分支,能看出来曾经做过合并, 而fast forward 合并就看
    不出来曾经做过合并.
 
+9. 解决bug :  创建一个分支, 在分支上进行修复,修复完成后合并到 主分支master 上.
+
+10.修复bug 时,我们会通过创建新的bug分支进行修复,然后合并,最后删除;
+     当手头工作没有完成时,先把工作现场git stash 一下,然后去修复bug ,修复后, 再git stash pop, 回到工作现场.
+
+11. 多人协作:
+	当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，
+                并且，远程仓库的默认名称是origin。
  
 	
 
